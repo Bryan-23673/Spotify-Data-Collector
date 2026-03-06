@@ -1,0 +1,4 @@
+music_venv/
+.env
+__pycache__/
+cron.log
