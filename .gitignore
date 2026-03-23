@@ -1,4 +1,4 @@
 music_venv/
 .env
 __pycache__/
-cron.log
+cron.logapp/send_email_test.py
