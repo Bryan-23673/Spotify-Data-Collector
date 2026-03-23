@@ -2,7 +2,7 @@ from spotipy import CacheHandler
 from app.database import get_connection
 
 class DBCacherHandler(CacheHandler):
-    def __init__(self, user_id : str):
+    def __init__(self, user_id : int):
         self.user_id = user_id
 
     def get_cached_token(self):
@@ -40,5 +40,3 @@ class DBCacherHandler(CacheHandler):
         values = (self.user_id, token_info["access_token"], token_info["token_type"], int(token_info["expires_in"]), token_info["scope"], token_info["refresh_token"], token_info["expires_at"])
         with get_connection() as conn, conn.cursor() as cur:
             cur.execute(query, values)
-
-

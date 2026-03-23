@@ -17,7 +17,7 @@ SCOPES = [
 ]
 
 class SpotifyUser():
-    def __init__(self, user_id: str | None = None):
+    def __init__(self, user_id: int | None = None):
         self.user_id = user_id
 
     # This object is used to request authorization from the user

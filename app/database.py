@@ -10,12 +10,3 @@ def get_connection():
     if not db_url:
         raise RuntimeError("DATABASE_URL is not set")
     return psycopg.connect(db_url, row_factory=dict_row)
-
-if __name__ == "__main__":
-    query = "SELECT * FROM spotify_tokens"
-    
-    with get_connection() as conn:
-        with conn.cursor() as cur:
-            cur.execute(query=query)
-            rows = cur.fetchall()
-            print(rows)

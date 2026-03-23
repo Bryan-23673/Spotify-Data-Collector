@@ -39,6 +39,7 @@ A Python script that collects recently played songs from the Spotify API and sto
 Create a `.env` file with:
 - SPOTIFY_CLIENT_ID
 - SPOTIFY_CLIENT_SECRET
+- SPOTIFY_REDIRECT_URI
 - DB_HOST
 - DB_NAME
 - DB_USER
