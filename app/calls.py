@@ -49,7 +49,9 @@ def store_songs(user_id: int = None) -> dict:
         full_client = spotify_user.full_sp_client()
 
         most_recent = get_most_recent_song_time(conn, user["user_id"])
-        songs = full_client.current_user_recently_played(limit=50, after=1800000)
+
+        after_ms = int(most_recent.timestamp() * 1000) if most_recent else None
+        songs = full_client.current_user_recently_played(limit=50, after=after_ms)
         user_songs_stored = 0
 
         for item in songs["items"]:
@@ -162,6 +164,7 @@ def insert_recently_played(conn, user_id: int, spotify_track_id: str, played_at)
     query = """
     INSERT INTO listened_history (user_id, spotify_track_id, played_at)
     VALUES (%s, %s, %s)
+    ON CONFLICT (user_id, spotify_track_id, played_at) DO NOTHING
     """
     with conn.cursor() as cur:
         cur.execute(query, (user_id, spotify_track_id, played_at))
